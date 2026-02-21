@@ -13,8 +13,6 @@ namespace TaxiData_ETL_Processor.Mappings
     {
         public TaxiTripMap()
         {
-            AutoMap(CultureInfo.InvariantCulture);
-
             Map(m => m.TpepPickupDatetime).Name("tpep_pickup_datetime");
             Map(m => m.TpepDropoffDatetime).Name("tpep_dropoff_datetime");
             Map(m => m.PassengerCount).Name("passenger_count");

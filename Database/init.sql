@@ -21,4 +21,9 @@ CREATE INDEX IX_TaxiTrips_PULocationID ON TaxiTrips (PULocationID) INCLUDE (tip_
 
 CREATE INDEX IX_TaxiTrips_TripDistance ON TaxiTrips (trip_distance DESC);
 
+/* NOTE: While a computed column for Travel Duration (DATEDIFF) would be ideal 
+for performance, the task requirements specify that the table should 
+contain only the provided columns. Therefore, an index is used instead 
+to optimize queries filtering or sorting by trip timestamps.
+*/
 CREATE INDEX IX_TaxiTrips_TravelDuration ON TaxiTrips (tpep_pickup_datetime, tpep_dropoff_datetime);
