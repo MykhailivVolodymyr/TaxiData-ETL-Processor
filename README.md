@@ -1,5 +1,9 @@
 # NYC Taxi Data ETL Processor
 
+## Execution Results
+- **Total rows imported to SQL:** 29,889
+- **Duplicates identified and saved:** 111
+
 ## Project Structure
 - `Services/`: Contains core logic.
   - `TaxiParser.cs`: Handles CSV parsing, data transformation, and duplicate detection.
