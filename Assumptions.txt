@@ -1,0 +1,21 @@
+﻿9. Assume your program will be used on much larger data files. Describe in a few sentences what you would change if you knew it would be used for a 10GB CSV input file.
+
+Answer to question № 9
+
+
+Scalability for Large Files (10GB+)
+The current implementation loads the entire CSV file into memory using List<TaxiTrip>. 
+For a 10GB file, this would lead to excessive RAM consumption (likely exceeding 10-15GB due to object overhead), 
+and the HashSet for duplicates would add several more gigabytes, causing OutOfMemoryException. To handle such 
+datasets, I would implement the following changes:
+
+Streaming Processing: Switch to a streaming approach where data is read in chunks (e.g., 50,000 records at a time) and
+immediately inserted into the database via SqlBulkCopy, clearing the buffer after each batch.
+
+Staging Table Strategy: Use an unindexed staging table for high-speed initial insertion, followed by performing
+transformations and de-duplication directly in SQL using set-based operations.
+
+Parallel Processing: Implement parallel processing of multiple file segments simultaneously to maximize throughput.
+
+Enterprise ETL Tools: For industrial-scale use, consider specialized ETL tools such as SQL Server Integration Services (SSIS), 
+which provide native support for streaming and processing massive data volumes.
